@@ -1,0 +1,157 @@
+<!--  ============================================================================================= -->
+<div class="container-fluid fullSize" id="graphContainer">
+
+	<!-- Left menu -->
+	<div class="col-sm-4 col-md-3 fullSize flexWrapper" id="leftPanel">
+		<div class="flexHeight panel panel-primary">
+
+			<!-- Sidebar -->
+			<div class="list-group">
+
+			  <!-- User Line -->
+				<a class="list-group-item active">
+					Dagan Galarneau&nbsp;
+					<img alt="Teacher" tooltip="Teacher" tooltip-placement="right" src="images/apple-icon.png" />
+				</a>
+
+			  <!-- Class Line -->
+				<a id="class_line" class="list-group-item active dropdown-toggle" data-toggle="dropdown">
+					{{curClass.name}}
+					Algebra II
+					<span class="caret" tooltip="Select class" tooltip-placement="right"></span>
+					<ul ng-model="curClass.name" id="class_menu" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li role="presentation" class="dropdown-header">Select a class</li>
+						<li role="presentation" ng-repeat="aClass in classes"><a role="menuitem" tabindex="-1" ng-click="setClass($index)">{{aClass.name}}</a></li>
+					</ul>
+				</a>
+			</div>
+
+			 <accordion close-others="true">
+				<accordion-group ng-repeat="entry in graph.reports track by entry.id" is-open="entry.isOpen">
+					<accordion-heading>
+						<div class="hoverHighlight shortBottom titlePad">
+							{{entry.title}} <i ng-if="entry.options" class="pull-right anim glyphicon glyphicon-chevron-right" ng-class="{'spin-down': entry.isOpen}"></i>
+						</div>
+					</accordion-heading>
+
+					<ul class="list-group shortBottom">
+						<li ng-click="graph.jumpToReport(option.id)" ng-repeat="option in entry.options track by option.id" ng-class="{activeHeader: graph.activeReport==option}" class="list-group-item hoverHighlight">
+							{{option.text}}
+							<span ng-if="option.icon" ng-class="option.icon" class="glyphicon redIcon" tooltip="Requires grading" tooltip-placement="top" ></span>
+						</li>
+					</ul>
+				</accordion-group>
+			 </accordion>
+		</div>
+	</div>
+
+	<!-- Main Panel -->
+	<div class="col-sm-8 col-md-9 fullSize" id="rightPanel">
+		<div class="panel panel-primary fullSize flexWrapper">
+			<div class="panel-heading">
+				<span class="anim-flash value-{{graph.activeReport.id}}">{{graph.reportTitle}}</span>
+			</div>
+
+			<div class="panel-body flexHeight">
+				<!-- Include an image and/or template -->
+				<img ng-if="graph.activeReport.img" ng-src="{{'images/mocks/' + graph.activeReport.img}}" />
+				<ng-include ng-if="graph.activeReport.template" src="'reports/' + graph.activeReport.template"></ng-include>
+
+				<div ng-if="graph.activeReport.instructions" class="reportInstructions" ng-cloak>
+					<span class="glyphicon glyphicon-info-sign instructIcon"></span>
+					{{graph.activeReport.instructions}}
+				</div>
+			</div>
+
+
+			<!-- Filter Footer -->
+<!--
+			<div ng-if="graph.activeReport && !graph.activeReport.noFilters" class="panel-footer">
+
+				<span class="footerGroup alert alert-info">
+					<span class="footerTitle">Active filters:</span>
+					<div class="btn-group dropup filterButton" dropdown>
+						<button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle tooltip="Select one or more filters" tooltip-placement="top">
+							None <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Clear all</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Date range<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+							<li ng-if="!graph.activeReport.filter.noType"><a href="#">Assign. Type<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+							<li ng-if="!graph.activeReport.filter.noStandard" ><a href="#">Standard<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+						</ul>
+					</div>
+				</span>
+
+				<span ng-if="graph.activeReport.filter.section" class="footerGroup alert alert-section">
+					<span class="footerGroup">
+						<span class="footerTitle">Show:</span>
+
+						<div class="btn-group dropup filterButton" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle tooltip="Limit list to one section" tooltip-placement="top">
+								{{graph.state.section}} <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li ng-click="graph.section('All')"><a href="#">All</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Section</li>
+								<li ng-click="graph.section('Morning')"><a href="#">Morning</a></li>
+								<li ng-click="graph.section('Afternoon')"><a href="#">Afternoon</a></li>
+							</ul>
+						</div>
+					</span>
+				</span>
+
+
+				<span ng-if="graph.activeReport.filter.compare" class="alert alert-success noWrap">
+					<span class="footerGroup">
+						<span class="footerTitle">Show:</span>
+
+						<div class="btn-group dropup filterButton" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle tooltip="Choose data to view" tooltip-placement="top">
+								{{graph.state.show}} <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li ng-click="graph.show('Class')"><a href="#">Class</a></li>
+								<li ng-click="graph.show('Student')"><a href="#">Single student<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Section</li>
+								<li ng-click="graph.show('Morning')"><a href="#">Morning</a></li>
+								<li ng-click="graph.show('Afternoon')"><a href="#">Afternoon</a></li>
+							</ul>
+						</div>
+					</span>
+
+					<span class="footerGroup">
+						<span class="footerTitle">Compare:</span>
+
+						<div class="btn-group dropup filterButton" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle tooltip="Add a comparison dataset" tooltip-placement="top">
+								{{graph.state.compare}} <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li ng-click="graph.compare('None')"><a href="#">None</a></li>
+								<li class="divider"></li>
+								<li ng-click="graph.compare('Class')"><a href="#">Class</a></li>
+								<li ng-click="graph.compare('Student')"><a href="#">Single student<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Section</li>
+								<li ng-click="graph.compare('Morning')"><a href="#">Morning</a></li>
+								<li ng-click="graph.compare('Afternoon')"><a href="#">Afternoon</a></li>
+							</ul>
+						</div>
+					</span>
+				</span>
+
+				<button ng-if="graph.activeReport.button" ng-click="graph.jumpToReport(graph.activeReport.button.link)" class="btn btn-primary" tooltip="{{graph.activeReport.button.tip}}">
+					{{graph.activeReport.button.text}}
+				</button>
+			</div>
+-->
+
+
+		</div>
+	</div>
+
+</div> <!-- container -->

@@ -1,0 +1,46 @@
+<div>
+
+	<nav class="navbar navbar-inverse navbar-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="navbar-brand">
+					<div id="slidermenuIcon" ng-click="nav.openMenu()"></div>
+				</div>
+
+				<div id="kbLogo" class="navbar-brand">
+					<img alt="Brand" src="images/AMSCO_Logo.png" />
+				</div>
+
+				<div id="kbModule" class="navbar-brand">
+					<img alt="Brand" src="images/AMSCO_GRADES.png" />
+				</div>
+			</div>
+
+			<div class="collapse navbar-collapse" ng-class="!nav.navCollapsed && 'in'">
+				<span class="navbar-right">
+					<span ng-click="nav.options()" id="prefs" class="glyphicon glyphicon-cog navbar-btn"></span>
+				</span>
+			</div>
+
+<!--
+			<div class="collapse navbar-collapse" ng-class="!nav.navCollapsed && 'in'">
+				<a id="doneBtn" ng-click="nav.done()" ng-bind="nav.doneBtnName()" ng-class="nav.doneBtnClass() + ' navbar-right navbar-btn btn btn-info'" ng-cloak></a>
+
+				<div class="navbar-right navbar-btn btn-group" ng-cloak>
+					<a ng-class="nav.getClass(false)" ng-click="nav.setFilter(false)" class="btn">Show All</a>
+					<a ng-class="nav.getClass(true)" ng-click="nav.setFilter(true)" class="btn">Show Pending<span class="pendBadgeSpacer badge" ng-cloak>{{nav.pendCnt}}</span></a>
+				</div>
+			</div>
+-->
+		</div>	<!-- container-fluid -->
+	</nav>
+
+	<div ng-show="nav.isSaving" class="saving" ng-cloak><span>SAVING</span></div>
+
+	<slider-menu ng-model="nav.menuModel"></slider-menu>
+
+	<div id="outerStatus" ng-show="nav.status" class="status-anim" ng-cloak>
+		<div id="status" ng-bind-html="nav.status"></div>
+	</div>
+
+</div>

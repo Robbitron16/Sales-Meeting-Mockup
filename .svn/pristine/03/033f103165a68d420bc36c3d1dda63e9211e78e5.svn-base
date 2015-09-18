@@ -1,0 +1,23 @@
+<div class="form-group">
+	<select class="form-control btn-info">
+		<option ng-repeat="student in graph.problemStudents" class="whiteBG">{{student.name}}</option>
+	</select>
+</div>
+
+<table class="table">
+	<thead><tr><th>Assignment</th><th>Due</th><th>Class</th><th>Student</th></tr></thead>
+	<tr ng-repeat="assign in graph.assignments">
+		<td><a href="change" class="pointer blackText">
+			<span class="glyphicon" ng-class="{Homework: 'glyphicon-education', Test:'glyphicon-blackboard' , Quiz:'glyphicon-pencil'}[assign.type]" tooltip="{{assign.type}}" tooltip-placement="top" ></span>
+			{{assign.name}}
+		</a></td>
+
+		<td><span>{{assign.due}}</span></td>
+<!--		<td><span ng-class="{danger: assign.grade < 60, warning: assign.grade < 70}">{{assign.grade}}%</span></td> -->
+		<td><span>{{assign.grade}}%</span></td>
+		<td>
+			<span ng-if="assign.student !== 'X'" ng-class="{danger: assign.student < 60, warning: assign.student < 70}">{{assign.student}}%</span>
+			<span ng-if="assign.student === 'X'" class="danger">Missing</span>
+		</td>
+	</tr>
+</table>

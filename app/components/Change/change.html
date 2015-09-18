@@ -1,0 +1,86 @@
+<!--  ============================================================================================= -->
+<div class="container-fluid fullSize flexWrapper" id="container">
+
+	<!-- Context options -->
+<!--
+	<div id="contextMenu">
+		<a id="doneBtn" class="navbar-right btn btn-info" ng-cloak>Done</a>
+
+		<div class="navbar-right btn-group" ng-cloak>
+			<a class="btn btn-info">Show All</a>
+			<a class="btn btn-info">Show Pending<span class="pendBadgeSpacer badge" ng-cloak>{{nav.pendCnt}}</span></a>
+		</div>
+	</div>
+-->
+
+	<!-- Main Panel -->
+	<div class="panel panel-primary fullSize flexHeight" scroll-to-top-when="filter_change">
+		<div class="panel-body">
+
+			<!-- If there's a single user, display the user name now -->
+			<div id="titleBar">{{change.title}}</div>
+
+			<ul id="changeList" mathjax class="atomic">
+				<li ng-repeat="problem in change.problems track by problem.id" mathjax-repeat>
+						<div ng-hide="change.filterQs(problem.showPend)" class="panel panel-primary repeat-anim">
+							<div class="panel-heading clearfix">
+<!--								<span ng-if="problem.isPending" class="glyphicon glyphicon-alert pendingSpacer"></span> -->
+								<ng-md-icon icon="{{change.getIcon(problem)}}" style="fill:white" size="24" class="iconSpacer pull-left"></ng-md-icon>
+								<div ng-if="change.mode == 'multiProblem'" class="probTitle pull-left">Question {{::problem.qNum}}</div>
+								<div ng-if="change.mode == 'multiStudent'" class="probTitle pull-left">{{::problem.uname.first + ' ' + problem.uname.last}}</div>
+							</div>
+
+							<div class="panel-body">
+
+								<problem-type ng-model="problem" pt-mode="q"></problem-type>
+
+								<div class="flexColWrapper answerSpacer">
+
+									<div class="flexColInner">
+
+										<div class="panel panel-default flexWidth">
+											<div class="panel-heading">Correct Answer</div>
+											<div class="panel-body">
+												<problem-type ng-model="problem" pt-mode="a" pt-answer="problem.cleanA" pt-correct="true"></problem-type>
+											</div>
+										</div>
+
+										<div ng-class="{correct:'panel-success', incorrect:'panel-danger', pending:'panel-warning', new:'panel-default'}[problem.status]" class="panel flexWidth colorAnim">
+											<div class="panel-heading">Student Answer</div>
+											<div class="panel-body">
+												<span ng-if="!problem.submission" class="changeNoAnswer">No answer has been submitted.</span>
+												<problem-type ng-if="problem.submission" ng-model="problem" pt-mode="a" pt-answer="problem.cleanSub" pt-correct="problem.isCorrect"></problem-type>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<div ng-class="{scoreBarSpacer: problem.isPending}" class="form-inline scoreBar anim">
+
+									<span ng-class="{pendingScore:problem.isPending}" class="noWrap anim">
+										<span ng-if="problem.isPending" class="glyphicon glyphicon-pencil gradeMe gradeMeSpacer"></span>
+										<span ng-class="{gradeMe: problem.isPending}" class="text-primary anim">Points:&nbsp;</span>
+<!--										<form name="points"><input ng-disabled="problem.status ==='new'" ng-blur="change.setPoints(problem, this.points.$valid)" required min="0" max="99" type="number" ng-model="problem.pts" class="form-control gradeInp"></form> -->
+										<form name="points"><input ng-blur="change.setPoints(problem, this.points.$valid)" required min="0" max="99" type="number" ng-model="problem.pts" class="form-control gradeInp"></form>
+										&nbsp;out of
+										<span class="textBold">{{problem.scoreMax}}</span>.
+									</span>
+
+									&nbsp;&nbsp;
+
+									<span class="text-primary textBold">Submissions:&nbsp;</span>
+
+									<span class="text-default textBold">{{problem.attempts}} </span> used,
+									<span class="textBold">{{problem.attemptsMax}}</span> allowed.
+								</div>
+							</div>
+						</div>
+
+				</li>
+			</ul>
+
+		</div>
+	</div>
+
+</div> <!-- container -->

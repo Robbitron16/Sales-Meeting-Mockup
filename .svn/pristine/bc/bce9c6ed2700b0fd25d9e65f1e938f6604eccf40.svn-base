@@ -1,0 +1,12 @@
+<table class="table">
+	<thead><tr><th>Student</th><th>Missing</th></tr></thead>
+	<tr ng-repeat="entry in graph.assign1">
+		<td ng-click="graph.jumpToReport('stdt')" ><span class="pointer blackText">
+			{{entry.name}}
+		</span></td>
+
+		<td>
+			<span ng-class="{danger: entry.missing >= 9, warning: entry.missing >= 5}">{{entry.missing}}</span>
+		</td>
+	</tr>
+</table>

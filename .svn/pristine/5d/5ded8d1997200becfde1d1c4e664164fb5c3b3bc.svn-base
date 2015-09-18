@@ -1,0 +1,68 @@
+<div>
+	<filter-bar header="Assignment" type="ASSIGNMENTS" ng-model="graph.assignList" options="graph.activeReport.filter"></filterbar>
+</div>
+
+<table class="table">
+	<thead><tr>
+		<th>Standard</th>
+
+		<th ng-if="graph.state.compare === 'None'">Performance</th>
+		<th ng-if="graph.state.compare !== 'None'">{{graph.state.showTextTitle}}</th>
+		<th ng-if="graph.state.compare !== 'None'">{{graph.state.compareTextTitle}}</th>
+
+		<th ng-if="graph.state.compare === 'None'">Problems</th>
+		<th ng-if="graph.state.compare === 'None'">Average</th>
+	</tr></thead>
+
+	<tr ng-repeat="assign in graph.standardDetail">
+
+		<td><span ng-click="graph.jumpToReport('asnperf')" class="pointer">
+			{{assign.name}}
+		</span></td>
+
+		<!-- Normal Mode -->
+		<td ng-if="graph.state.compare === 'None'">
+			<img class="bar" ng-src="{{assign.bar}}" popover-placement="left" popover-template="'reports/PopoverTemplate.html'" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+		</td>
+
+			<!-- Coverage -->
+		<td ng-if="graph.state.compare === 'None'" class="centered">
+			{{assign.correct + assign.missed}}
+		</td>
+
+			<!-- Average -->
+		<td ng-if="graph.state.compare === 'None'" class="centered">
+			{{graph.averagePercent(assign.correct, assign.correct + assign.missed)}}%
+		</td>
+
+		<!-- Comparison Mode -->
+		<td ng-if="graph.state.compare !== 'None'">
+			<!-- One data point: use average bar -->
+			<div ng-if="assign.student !== 'X'">
+				<div class="barContainer pull-left" popover-placement="left" popover="{{assign.correct}} / {{assign.correct + assign.missed}} correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+					<div class="pull-left" ng-class="{danger: assign.grade < 60, warning: assign.grade < 70, success: assign.grade >= 70}" ng-style="graph.barWidth(assign.grade)">{{assign.grade}}%</div>
+					<div class="pull-right" ng-style="graph.barWidth(100-assign.grade)">&nbsp;</div>
+				</div>
+			</div>
+
+			<!-- Either case: Missing -->
+			<span ng-if="assign.student === 'X'" class="danger">Missing</span>
+		</td>
+
+		<td ng-if="graph.state.compare !== 'None'">
+			<!-- One data point: use average bar -->
+			<div ng-if="assign.student !== 'X'">
+				<div class="barContainer pull-left" popover-placement="left" popover="{{assign.correct}} / {{assign.correct + assign.missed}} correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+					<div class="pull-left" ng-class="{danger: assign.grade < 60, warning: assign.grade < 70, success: assign.grade >= 70}" ng-style="graph.barWidth(assign.grade)">{{assign.grade}}%</div>
+					<div class="pull-right" ng-style="graph.barWidth(100-assign.grade)">&nbsp;</div>
+				</div>
+			</div>
+
+			<!-- Either case: Missing -->
+			<span ng-if="assign.student === 'X'" class="danger">Missing</span>
+		</td>
+
+	</tr>
+</table>
+
+<div class="page-summary">Class average: 73%</div>

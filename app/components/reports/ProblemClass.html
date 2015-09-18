@@ -1,0 +1,24 @@
+<div class="form-group">
+	<select class="form-control btn-success">
+		<option ng-repeat="assign in graph.assignments" class="whiteBG">
+			{{assign.name}}
+		</option>
+	</select>
+</div>
+
+<table class="table">
+	<thead><tr>
+		<th>Assignment</th>
+		<th>Score</th>
+	</tr></thead>
+
+	<tr ng-repeat="problem in graph.problems">
+
+		<td><a href="change" class="pointer blackText">
+			{{problem.text}}
+			<span ng-if="problem.pending" ng-click="graph.jumpToReport('aspe')" class="glyphicon glyphicon-alert redIcon" tooltip="Requires grading" tooltip-placement="top" ></span>
+		</a></td>
+
+		<td><span ng-class="{danger: problem.grade < 60, warning: problem.grade < 70}">{{problem.grade}}%</span></td>
+	</tr>
+</table>

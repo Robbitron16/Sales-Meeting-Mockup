@@ -1,0 +1,36 @@
+<table class="table">
+	<thead><tr>
+		<th>Assignment</th>
+		<th>{{graph.state.showTextTitle}}</th>
+		<th ng-if="graph.state.compare !== 'None'">{{graph.state.compareTextTitle}}</th>
+	</tr></thead>
+
+	<tr ng-repeat="assign in graph.assignments">
+
+		<td><span ng-click="graph.jumpToReport('stprb')" class="pointer">
+			<span class="glyphicon" ng-class="{Homework: 'glyphicon-education', Test:'glyphicon-blackboard' , Quiz:'glyphicon-pencil'}[assign.type]" tooltip="{{assign.type}}" tooltip-placement="top" ></span>
+			{{assign.name}}
+<!--			<span ng-if="assign.pending" ng-click="graph.jumpToReport('aspe')" class="glyphicon glyphicon-alert redIcon" tooltip="Requires grading" tooltip-placement="top" ></span> -->
+		</span></td>
+
+		<td>
+			<div class="barContainer pull-left" popover-placement="left" popover="{{assign.correct}} / {{assign.correct + assign.missed}} correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+				<div class="pull-left" ng-class="{danger: assign.grade < 60, warning: assign.grade < 70, success: assign.grade >= 70}" ng-style="graph.barWidth(assign.grade)">{{assign.grade}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-assign.grade)">&nbsp;</div>
+			</div>
+
+			<span ng-if="assign.correct + assign.missed < 10" class="coverageSpacer glyphicon" ng-class="{'glyphicon-hand-down': true}" tooltip="Low coverage: {{assign.correct + assign.missed}} problems" tooltip-placement="top" ></span>
+		</td>
+
+		<td ng-if="graph.state.compare !== 'None'">
+
+			<span ng-if="assign.student === 'X'" class="danger">Missing</span>
+
+			<div ng-if="assign.student !== 'X'" class="barContainer clearfix">
+				<div class="pull-left" ng-class="{danger: assign.student < 60, warning: assign.student < 70, success: assign.student >= 70}" ng-style="graph.barWidth(assign.student)">{{assign.student}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-assign.student)">&nbsp;</div>
+			</div>
+		</td>
+
+	</tr>
+</table>

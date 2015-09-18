@@ -1,0 +1,79 @@
+#slidermenu {
+    position: absolute;
+    top: 7px;
+	z-index: 101;
+
+	-webkit-transition:transform cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+	transition:transform cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+
+	will-change: transform;
+	transform: translate3d(-1000px, 0, 0);
+}
+
+.sliderMenuLine {
+    font: bold 14px/16px Arial;
+    color: black;
+
+    padding: 3px 10px 3px 7px;
+    margin-left: 6px;
+}
+
+.sliderMenuLine>img {
+    width: 29px;        /* Unfortunately, this is needed for dynamic positioning */
+    height: 23px;
+
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.sliderMenuLine>span {
+    line-height: 23px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sliderMenuLine:hover {
+    background-color: #F69935;
+    cursor: pointer;
+}
+
+#sm_center:first-child {
+	padding-top: 2px;
+}
+
+#sm_center {
+    float: left;
+    background-color: rgba(227, 240, 244, 0.9);	/* Background color -- Needs to match color AND opacity baked into corner images */
+}
+
+#sm_top {
+    float: left;
+    background: repeat-x url("../images/slidermenu/sm_top.png");
+    height: 7px;
+}
+
+#sm_top_right {
+    float: left;
+    background: url("../images/slidermenu/sm_top_right.png");
+    width: 9px;
+    height: 7px;
+}
+
+#sm_right {
+    float: left;
+    background: repeat-y url("../images/slidermenu/sm_right.png");
+    width: 9px;
+}
+
+#sm_bottom {
+    float: left;
+    background: repeat-x url("../images/slidermenu/sm_bottom.png");
+    height: 11px;
+}
+
+#sm_bottom_right {
+    float: left;
+    background: url("../images/slidermenu/sm_bottom_right.png");
+    width: 9px;
+    height: 11px;
+}

@@ -1,0 +1,43 @@
+<div>
+	<filter-bar header="Assignment" type="Assignments" ng-model="graph.assignList" options="graph.activeReport.filter"></filterbar>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Student
+				<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+			</th>
+
+			<th>
+				Performance
+				<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+			</th>
+			<th class="centered">Correct</th>
+		</tr>
+	</thead>
+
+	<tr ng-repeat="(name, entry) in ::graph.studentScores">
+		<td class="tdMax">
+			<a class="pointer blackText">
+				{{name}}
+			</a>
+		</td>
+
+		<td>
+			<div class="barContainer pull-left"  ng-style="graph.barWidth(100, {container:true, size:'large'})" popover-placement="left" popover="{{graph.studentScores[name].score}} / 27 correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+				<div class="pull-left" ng-class="{danger: graph.studentScores[name].percent < 60, warning: graph.studentScores[name].percent < 70, success: graph.studentScores[name].percent >= 70}" ng-style="graph.barWidth(graph.studentScores[name].percent, 'large')">{{graph.studentScores[name].percent}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-graph.studentScores[name].percent, 'large')">&nbsp;</div>
+			</div>
+		</td>
+
+		<!-- Problems -->
+		<td ng-if="graph.state.compare === 'None'" class="centered">
+			{{graph.studentScores[name].score}} / 27
+		</td>
+
+	</tr>
+</table>
+
+<div ng-if="graph.curStudent === 'ALL STUDENTS'" class="page-summary">Class average: 73%</div>

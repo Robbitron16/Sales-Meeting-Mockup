@@ -1,0 +1,8 @@
+<table class="table">
+	<thead><tr><th>Standard</th><th>Assignments</th><th>Problems</th></tr></thead>
+	<tr><td><span ng-click="graph.jumpToReport('asli')" class="pointer">A-REI.1</span></td><td>2</td><td>7</td></tr>
+	<tr><td><span ng-click="graph.jumpToReport('asli')" class="pointer">A-REI.6</span></td><td>4</td><td>13</td></tr>
+	<tr><td><span ng-click="graph.jumpToReport('asli')" class="pointer">F-LE.1b</span></td><td>1</td><td>2</td></tr>
+	<tr class="missingStd"><td><span>N-RN 1</span></td><td>0</td><td>0</td></tr>
+	<tr><td><span ng-click="graph.jumpToReport('asli')" class="pointer">N-RN 3</span></td><td>6</td><td>27</td></tr>
+</table>

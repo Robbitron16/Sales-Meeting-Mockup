@@ -1,0 +1,88 @@
+<div>
+	<filter-bar header="Standard" type="STANDARDS" ng-model="graph.bigStdList" options="graph.activeReport.filter"></filterbar>
+</div>
+
+<table class="table" mathjax>
+	<thead><tr>
+		<th>Question</th>
+
+		<th>
+			Assignment
+			<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+		</th>
+
+		<th>
+			Average
+			<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+		</th>
+
+		<th>Student Performance</th>
+	</tr></thead>
+
+	<tr ng-repeat="quest in ::graph.problems" mathjax-repeat>
+
+		<!-- Question -->
+		<td>
+			<span ng-bind-html="graph.problemList[$index].prefix"></span>
+			<span ng-bind-html="graph.problemList[$index].q"></span>
+		</td>
+
+		<!-- Assignment -->
+		<td><span ng-click="graph.jumpToReport('asnperf')" class="pointer">
+			{{graph.assignments[quest.assign].name}}
+		</span></td>
+
+		<!-- Average -->
+		<td>
+			{{quest.grade}}%
+		</td>
+
+		<!-- Student list -->
+		<td class="nameListCol">
+			<div class="nameToggle">
+				<button ng-click="quest.showNames = !quest.showNames" class="btn btn-xs btn-primary">
+<!--					<span class="glyphicon glyphicon-plus"></span> -->
+					<span ng-if="quest.showNames">Hide names</span>
+					<span ng-if="!quest.showNames">Show names</span>
+				</button>
+			</div>
+
+			<div ng-if="!quest.showNames">
+				<img class="smallBar" ng-src="{{graph.assignments[quest.assign].bar}}" popover-placement="left" popover-template="'reports/ProblemPopover.html'" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+			</div>
+
+			<div ng-if="quest.showNames">
+				<div class="excelList nameListBox">
+					<div class="listHead badge">
+						Excelling
+					</div>
+					<div class="nameList">
+						{{graph.names.excel.join(', ')}}
+					</div>
+				</div>
+
+				<div class="passList nameListBox">
+					<div class="listHead badge">
+						Passing
+					</div>
+					<div class="nameList">
+						{{graph.names.pass.join(', ')}}
+					</div>
+				</div>
+
+				<div class="failList nameListBox">
+					<div class="listHead badge">
+						Failing
+					</div>
+					<div class="nameList">
+						{{graph.names.fail.join(', ')}}
+					</div>
+				</div>
+			</div>
+
+		</td>
+
+	</tr>
+</table>
+
+<div class="page-summary">Alice Thompson average: 73%</div>

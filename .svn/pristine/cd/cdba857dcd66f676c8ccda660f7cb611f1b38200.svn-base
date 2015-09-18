@@ -1,0 +1,198 @@
+/* app css stylesheet */
+
+/* =========================== General Styling =========================== */
+
+html,body { height:100%; }
+
+[ng-cloak] {
+  display: none !important;
+}
+
+/* Disable spinners for number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+/* Disable underlines for links on hover (specifically, the accordian headers */
+a:focus, a:hover {
+	text-decoration: none !important;
+}
+
+.disable-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a.accordian-toggle:focus {
+	text-decoration: none;
+}
+
+.modal-backdrop {
+	bottom: 0;		/* Fix a wacky bug in AngularUI Bootstrap Modal */
+}
+
+table.atomic tr {
+	display: block;
+}
+
+table.atomic tr td, table.atomic tr th {
+	page-break-inside: avoid;
+}
+
+/* =========================== Flexible Vertical Layout =========================== */
+/* This is currently a mess! We're using a combination of old-school height setting and
+ * flexbox layout. Fixing Edit to only use flexbox is easy, but the other views are
+ * more complex.
+ */
+
+.flexWrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.flexHeight {
+	flex: 1;
+	overflow: auto;
+}
+
+.fullSize {
+	height: 100%;
+	margin-bottom: 0;
+}
+
+.fullSizeInner {
+	height: calc(100% - 90px);	/* 50px header + 20px margin top and bottom */
+}
+
+/* =========================== Status Popup =========================== */
+
+#outerStatus {
+	z-index: 100;
+
+	width: 100%;
+	position: fixed;
+	top: 100px;
+}
+
+#status {
+	width: 160px;
+	margin-left: auto;
+	margin-right: auto;
+
+	background-color: #4297D7;
+	font: 20px Arial;
+	color: white;
+	padding: 20px;
+	border: solid 1px black;
+	text-align: center;
+	cursor: default;
+
+	border-radius: 5px;
+}
+
+/* =========================== Saving indicator =========================== */
+.saving, .saved {
+	font-size: 10px;
+	position: absolute;
+	top: 55px;
+	width: 100%;
+	text-align: right;
+}
+
+.saving>span {
+	margin-right: 6px;
+
+	background-color: #CCCCCC;
+	color: white;
+	padding: 3px;
+	border-radius: 8px;
+}
+
+.saved>span {
+	margin-right: 11px;
+	color: blue;
+}
+
+/* =========================== Embedded =========================== */
+
+.math {
+	white-space: nowrap;
+}
+
+/* =========================== Nav Bar =========================== */
+
+#kbLogo {
+	position: relative;
+	margin-top: -5px;
+}
+
+#kbModule>img {
+	position: relative;
+	margin-top: -3px;
+	display: inline;
+}
+
+#slidermenuIcon {
+	background-image: url("../images/menu_icons.png");
+	width: 25px;
+	height: 17px;
+	cursor: pointer;
+}
+#slidermenuIcon:hover {
+	background-position: -25px 0;
+}
+
+#doneBtn {
+	margin-left: 8px;
+}
+
+#prefs {
+	color: #E1E1E1;
+	font-size: 24px;
+	cursor: pointer;
+
+	margin-left: 16px;
+	margin-top: 13px;
+}
+
+#prefs:hover {
+	color: white;
+	text-shadow: 0 0 16px yellow;
+}
+
+.optCheck {
+	min-width: 20px;
+	display: block;
+}
+
+#loadFailed {
+	font: 28px Arial;
+	margin: 20px;
+}
+
+/* =========================== Collapsible Navbar =========================== */
+
+div.navbar-collapse.collapse {
+	display: block;
+	overflow: hidden;
+	max-height: 0px;
+	-webkit-transition: max-height .3s ease;
+	-moz-transition: max-height .3s ease;
+	-o-transition: max-height .3s ease;
+	transition: max-height .3s ease;
+}
+
+div.navbar-collapse.collapse.in {
+	max-height: 2000px;
+}

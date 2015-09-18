@@ -1,0 +1,7 @@
+<table class="table">
+	<thead><tr><th>Standard</th><th>Class Grade</th></tr></thead>
+	<tr ng-repeat="standard in graph.problemStandards">
+		<td><span ng-click="graph.jumpToReport('asli')" class="pointer">{{standard.name}}</span></td>
+		<td><span ng-class="{danger: standard.grade < 60, warning: standard.grade < 70}">{{standard.grade}}%</span></td>
+	</tr>
+</table>

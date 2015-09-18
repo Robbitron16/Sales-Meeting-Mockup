@@ -1,0 +1,5 @@
+<div class="changeImg" style="position:relative">
+	<img src="{{src}}">
+
+	<div class="imgOverlay" ng-repeat="overlay in model" style="color:{{overlay.color}}; font-size:{{overlay.size}}; left:{{overlay.x}}px; top:{{overlay.y}}px;" ng-bind-html="overlay.text"></div>
+</div>

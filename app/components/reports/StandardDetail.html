@@ -1,0 +1,47 @@
+<div class="form-group">
+	<select class="form-control btn-success">
+		<option ng-repeat="std in ::graph.standards" class="whiteBG">
+			{{std.code}}: {{std.name}}
+		</option>
+	</select>
+</div>
+
+<table class="table">
+	<thead><tr>
+		<th>Assignment</th>
+		<th>{{graph.state.showTextTitle}}</th>
+		<th ng-if="graph.state.compare !== 'None'">{{graph.state.compareTextTitle}}</th>
+	</tr></thead>
+
+	<tr ng-repeat="assign in graph.standardDetail">
+
+		<td class="tdMax"><span ng-click="graph.jumpToReport('stprb')" class="pointer">
+			{{assign.name}}
+		</span></td>
+
+		<td class="noWrap">
+			<img class="bar" ng-src="{{assign.bar}}" popover-placement="left" popover-template="'reports/PopoverTemplate.html'" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+<!--
+			<div class="barContainer pull-left" popover-placement="left" popover="{{assign.correct}} / {{assign.correct + assign.missed}} correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+				<div class="pull-left" ng-class="{danger: assign.grade < 60, warning: assign.grade < 70, success: assign.grade >= 70}" ng-style="graph.barWidth(assign.grade)">{{assign.grade}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-assign.grade)">&nbsp;</div>
+			</div>
+-->
+			<span ng-if="assign.correct + assign.missed < 10" class="coverageSpacer glyphicon" ng-class="{'glyphicon-hand-down': true}" tooltip="Low coverage: {{assign.correct + assign.missed}} problems" tooltip-placement="top" ></span>
+		</td>
+
+		<td ng-if="graph.state.compare !== 'None'">
+
+			<span ng-if="assign.student === 'X'" class="danger">Missing</span>
+			<img class="bar" ng-src="{{assign.bar}}" popover-placement="left" popover="{{assign.correct}} / {{assign.correct + assign.missed}} correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+
+<!--
+			<div ng-if="assign.student !== 'X'" class="barContainer clearfix">
+				<div class="pull-left" ng-class="{danger: assign.student < 60, warning: assign.student < 70, success: assign.student >= 70}" ng-style="graph.barWidth(assign.student)">{{assign.student}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-assign.student)">&nbsp;</div>
+			</div>
+-->
+		</td>
+
+	</tr>
+</table>

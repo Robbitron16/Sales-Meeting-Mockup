@@ -1,0 +1,9 @@
+<table class="table">
+	<thead><tr><th>Student</th><th>Grade</th><th>Missing assignments</th><th>Failing Standards</th></tr></thead>
+	<tr ng-repeat="student in graph.problemStudents">
+		<td><span ng-click="graph.jumpToReport('stdt')" class="pointer">{{student.name}}</span></td>
+		<td><span ng-class="{danger: student.grade < 60, warning: student.grade < 70}">{{student.grade}}%</span></td>
+		<td><span ng-class="{danger: student.missing >= 9, warning: student.missing >= 5}">{{student.missing}}</span></td>
+		<td><span>{{student.stds}}</span></td>
+	</tr>
+</table>

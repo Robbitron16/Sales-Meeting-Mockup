@@ -1,0 +1,17 @@
+<div class="alert alert-warning">
+	You have <span class="badge">2</span> assignments that need attention.
+
+	<a class="btn btn-info" href="change" id="gradeAll">View all ungraded questions</a>
+</div>
+
+
+<table class="table">
+	<thead><tr><th>Assignment</th></tr></thead>
+	<tr ng-repeat="assign in graph.assignments | filter:{pending:true}">
+
+		<td><a href="change" class="pointer blackText">
+			<span class="glyphicon" ng-class="{Homework: 'glyphicon-education', Test:'glyphicon-blackboard' , Quiz:'glyphicon-pencil'}[assign.type]" tooltip="{{assign.type}}" tooltip-placement="top" ></span>
+			{{assign.name}}
+		</a></td>
+	</tr>
+</table>

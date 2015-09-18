@@ -1,0 +1,9 @@
+<div>
+	<filter-bar options="graph.activeReport.filter"></filterbar>
+</div>
+
+<h4 ng-if="graph.state.compare !== 'None'" class="graphTitle">Comparing <span class="line1">{{graph.state.showText}}</span> vs. <span class="line2">{{graph.state.compareText}}</span></h4>
+<h4 ng-if="graph.state.compare === 'None'" class="graphTitle">Performance for: <span class="line1">{{graph.state.showText}}</span></h4>
+
+<div></div> <!-- Nice spacer, dude -->
+<img src="images/mocks/AssignOverview.png" />

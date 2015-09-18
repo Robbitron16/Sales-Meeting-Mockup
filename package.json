@@ -1,0 +1,37 @@
+{
+  "name": "AssignmentGenerator",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Create and edit assignments",
+  "devDependencies": {
+    "bower": "^1.3.1",
+    "frisby": "^0.8.5",
+    "http-server": "^0.6.1",
+    "karma": "~0.10",
+    "karma-junit-reporter": "^0.2.2",
+    "protractor": "^1.1.1",
+    "shelljs": "^0.2.6",
+
+    "connect-history-api-fallback": "1.1.0",
+    "gulp": "~3.9.0",
+    "gulp-concat": "~2.4.2",
+    "gulp-connect": "^2.2.0",
+    "gulp-minify-css": "^0.4.6",
+    "gulp-minify-html": "^0.1.8",
+    "gulp-ng-annotate": "^0.5.2",
+    "gulp-ng-html2js": "^0.1.8",
+    "gulp-sourcemaps": "",
+    "gulp-uglify": ""
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js",
+    "test-single-run": "karma start karma.conf.js  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e-tests/protractor.conf.js"
+  }
+}

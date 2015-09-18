@@ -1,0 +1,15 @@
+<img src="images/mocks/StudentSummary.png" />
+
+<!--
+<table class="table">
+	<thead><tr><th>Student</th><th>Grade</th><th>Homework</th><th>Quiz</th><th>Test</th><th>Missing Assignments</th></tr></thead>
+	<tr ng-repeat="student in graph.problemStudents">
+		<td><span ng-click="graph.jumpToReport('stas')" class="pointer">{{student.name}}</span></td>
+		<td><span ng-class="{danger: student.grade < 60, warning: student.grade < 70}">{{student.grade}}%</span></td>
+		<td><span ng-class="{danger: student.hw < 60, warning: student.hw < 70}">{{student.hw}}%</span></td>
+		<td><span ng-class="{danger: student.quiz < 60, warning: student.quiz < 70}">{{student.quiz}}%</span></td>
+		<td><span ng-class="{danger: student.test < 60, warning: student.test < 70}">{{student.test}}%</span></td>
+		<td><span ng-class="{danger: student.missing >= 9, warning: student.missing >= 5}">{{student.missing}}</span></td>
+	</tr>
+</table>
+-->

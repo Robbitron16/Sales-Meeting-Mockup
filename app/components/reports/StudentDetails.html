@@ -1,0 +1,61 @@
+<div class="form-group">
+	<select class="form-control btn-success">
+		<option ng-repeat="student in graph.problemStudents" class="whiteBG">{{student.name}}</option>
+	</select>
+</div>
+
+<table class="table">
+	<thead><tr><th>Type</th><th>Student</th><th>Class Average</th><th>Missing Assignments</th></tr></thead>
+	<tr class="info">
+		<td>
+			<span class="glyphicon glyphicon-globe rightSpacer"></span>
+			<span><b>Overall</b></span>
+		</td>
+		<td><span class="warning">74%</span></td>
+		<td><span class="warning">78%</span></td>
+		<td><span>2</span></td>
+	</tr>
+
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-education rightSpacer"></span>
+			<span span ng-click="graph.jumpToReport('aslib')" class="pointer">Homework</span>
+		</td>
+		<td><span class="warning">69%</span></td>
+		<td><span class="danger">63%</span></td>
+		<td><span>2</span></td>
+	</tr>
+
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-pencil rightSpacer"></span>
+			<span span ng-click="graph.jumpToReport('aslib')" class="pointer">Quiz</span>
+		</td>
+		<td><span class="success">81%</span></td>
+		<td><span class="success">88%</span></td>
+		<td><span>0</span></td>
+	</tr>
+
+	<tr>
+		<td>
+			<span class="glyphicon glyphicon-blackboard rightSpacer"></span>
+			<span span ng-click="graph.jumpToReport('aslib')" class="pointer">Test</span>
+		</td>
+		<td><span class="warning">76%</span></td>
+		<td><span class="success">80%</span></td>
+		<td><span>0</span></td>
+	</tr>
+</table>
+
+<div class="detailCategory">
+	<span class="stdDetailTitle">Strengths:</span>
+	<span span ng-click="graph.jumpToReport('aslib')" class="pointer">F-LE.1b</span>,
+	<span span ng-click="graph.jumpToReport('aslib')" class="pointer">N-RN1</span>,
+	<span span ng-click="graph.jumpToReport('aslib')" class="pointer">N-RN3</span>
+</div>
+
+<div>
+	<span class="stdDetailTitle">Weaknesses:</span>
+	<span span ng-click="graph.jumpToReport('aslib')" class="pointer">A-RE.1</span>,
+	<span span ng-click="graph.jumpToReport('aslib')" class="pointer">A-REI.6</span>
+</div>

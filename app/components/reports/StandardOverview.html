@@ -1,0 +1,24 @@
+<div>
+	<filter-bar options="graph.activeReport.filter"></filterbar>
+</div>
+
+<!--
+<div ng-if="graph.state.show === 'Student' && graph.state.compare ==='None'" class="form-group">
+	<select class="form-control btn-info">
+		<option ng-repeat="student in graph.problemStudents" class="whiteBG">{{student.name}}</option>
+	</select>
+</div>
+
+<div ng-if="graph.state.compare === 'Student'" class="form-group">
+	<select class="form-control btn-success">
+		<option ng-repeat="student in graph.problemStudents" class="whiteBG">{{student.name}}</option>
+	</select>
+</div>
+-->
+
+<h4 ng-if="graph.state.compare !== 'None'" class="graphTitle">Comparing <span class="line1">{{graph.state.showText}}</span> vs. <span class="line2">{{graph.state.compareText}}</span></h4>
+<h4 ng-if="graph.state.compare === 'None'" class="graphTitle">Performance for <span class="line1">{{graph.state.showText}}</span></h4>
+
+<div></div> <!-- Nice spacer, dude -->
+<img ng-if="graph.state.compare !== 'None'" ng-src="images/mocks/StudentStandard2.png" />
+<img ng-if="graph.state.compare === 'None'" ng-src="images/mocks/StandardOverview2.png" />

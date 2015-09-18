@@ -1,0 +1,5 @@
+<div ng-if="problem.prefix" class="changePrefix" ng-bind-html="problem.prefix"></div>
+
+<div class="changeProb" ng-bind-html="problem.q"></div>
+
+<qimg ng-if="problem.qImg" qi-data="problem.qImgOverlay" ng-src="{{problem.qImg}}"></qimg>

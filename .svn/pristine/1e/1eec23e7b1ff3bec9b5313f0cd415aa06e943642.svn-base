@@ -1,0 +1,96 @@
+<div>
+	<filter-bar header="Assign" ng-model="graph.assignNoCatgegory" header2="Student" type2="Students" ng-model2="graph.flatNames" curfilter1="graph.curAssign" curfilter2="graph.curStudent" options="graph.activeReport.filter"></filterbar>
+</div>
+
+<!-- ====================== BODY ====================== -->
+<table class="table" mathjax>
+	<thead><tr>
+		<th class="mediumText">
+			Question
+			<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+		</th>
+
+		<th ng-if="graph.curStudent === 'All Students'" class="smallText">
+			Avg.
+			<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+		</th>
+
+		<th ng-if="graph.curStudent !== 'All Students'" class="smallText">
+			Score
+			<ng-md-icon icon="arrow_drop_down" style="fill: black" size="16" class="sortIcon"></ng-md-icon>
+		</th>
+
+		<th ng-if="graph.curStudent ==='All Students'" class="smallText">Breakdown</th>
+	</tr></thead>
+
+	<tr ng-repeat="quest in ::graph.problems" mathjax-repeat>
+
+		<!-- Question -->
+		<td class="smallText">
+			<span ng-bind-html="graph.problemList[$index].prefix"></span>
+			<span ng-bind-html="graph.problemList[$index].q"></span>
+		</td>
+
+		<!-- Average -->
+		<td class="smallText">
+			<div ng-if="graph.curStudent ==='All Students'">
+				{{quest.grade}}%
+			</div>
+
+			<div ng-if="graph.curStudent !=='All Students'" class="barContainer pull-left" ng-style="graph.barWidth(100, {container:true})" popover-placement="left" popover="7 / 12 correct" class="btn btn-default" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+				<div class="pull-left" ng-class="{danger: quest.grade < 60, warning: quest.grade < 70, success: quest.grade >= 70}" ng-style="graph.barWidth(quest.grade)">{{quest.grade}}%</div>
+				<div class="pull-right" ng-style="graph.barWidth(100-quest.grade)">&nbsp;</div>
+			</div>
+
+		</td>
+
+		<!-- Student list -->
+		<td class="nameListCol" ng-if="graph.curStudent ==='All Students'">
+			<div class="nameToggle">
+				<button ng-click="quest.showNames = !quest.showNames" class="btn btn-xs btn-primary">
+<!--					<span class="glyphicon glyphicon-plus"></span> -->
+					<span ng-if="quest.showNames">Hide names</span>
+					<span ng-if="!quest.showNames">Show names</span>
+				</button>
+			</div>
+
+			<div ng-if="!quest.showNames">
+				<img class="smallestBar" ng-src="{{graph.assignments[quest.assign].bar}}" popover-placement="left" popover-template="'reports/ProblemPopover.html'" popover-append-to-body="true" popover-trigger="mouseenter" popover-popup-delay="300">
+			</div>
+
+			<div ng-if="quest.showNames">
+				<div class="excelList nameListBox">
+					<div class="listHead badge">
+						Excelling
+					</div>
+					<div class="nameList">
+						{{quest.excel.join(', ')}}
+					</div>
+				</div>
+
+				<div class="passList nameListBox">
+					<div class="listHead badge">
+						Passing
+					</div>
+					<div class="nameList">
+						{{quest.pass.join(', ')}}
+					</div>
+				</div>
+
+				<div class="failList nameListBox">
+					<div class="listHead badge">
+						Failing
+					</div>
+					<div class="nameList">
+						{{quest.fail.join(', ')}}
+					</div>
+				</div>
+			</div>
+
+		</td>
+
+	</tr>
+</table>
+
+<div ng-if="graph.curStudent === 'All Students'" class="page-summary">Class average: 73%</div>
+<div ng-if="graph.curStudent !== 'All Students'" class="page-summary">{{graph.curStudent}} average: 73%</div>

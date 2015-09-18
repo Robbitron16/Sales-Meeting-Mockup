@@ -1,0 +1,7 @@
+<table class="table">
+	<thead><tr><th>Assignment</th><th>Class Grade</th></tr></thead>
+	<tr ng-repeat="assign in graph.problemAssigns">
+		<td><span ng-click="graph.jumpToReport('ascls')" class="pointer">{{assign.name}}</span></td>
+		<td><span ng-class="{danger: assign.grade < 60, warning: assign.grade < 70}">{{assign.grade}}%</span></td>
+	</tr>
+</table>

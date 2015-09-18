@@ -1,0 +1,5 @@
+<table>
+	<tr><td class="detailHead">Excelling</td><td class="detailData">{{assign.epf[0] + " " + assign.plur[0]}}</td></tr>
+	<tr><td class="detailHead">Passing</td><td class="detailData">{{assign.epf[1] + " " + assign.plur[1]}}</td></tr>
+	<tr><td class="detailHead">Failing</td><td class="detailData">{{assign.epf[2] + " " + assign.plur[2]}}</td></tr>
+</table>

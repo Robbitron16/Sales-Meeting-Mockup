@@ -1,0 +1,5 @@
+<table>
+	<tr><td class="detailHead">Excelling</td><td class="detailData">{{assign.epf[0]}} students</td></tr>
+	<tr><td class="detailHead">Passing</td><td class="detailData">{{assign.epf[1]}} students</td></tr>
+	<tr><td class="detailHead">Failing</td><td class="detailData">{{assign.epf[2]}} students</td></tr>
+</table>

@@ -1,0 +1,57 @@
+<div>
+	<div class="filterBar alert-info clearfix">
+
+		<!-- Primary -->
+		<div ng-if="model" class="footerGroup pull-left">
+			<span class="footerTitle">{{header}}:</span>
+
+			<span class="form-group form-inline">
+				<select ng-change="ctrl.setFilter1()" class="form-control btn-info filter-pd">
+					<option ng-if="type" class="whiteBG filterAll">All {{type}}</option>
+					<option class="whiteBG" ng-repeat="item in ::model">
+						{{item}}
+					</option>
+				</select>
+			</span>
+		</div>
+
+		<!-- Secondary -->
+		<div ng-if="model2" class="footerGroup pull-left">
+			<span class="footerTitle">{{header2}}:</span>
+
+			<span class="form-group form-inline">
+				<select ng-change="ctrl.setFilter2()" ng-model="ctrl.curfilter2" class="form-control btn-info filter-pd">
+					<option ng-if="type2" class="whiteBG filterAll">All {{type2}}</option>
+					<option class="whiteBG" ng-repeat="item in ::model2">
+						{{item}}
+					</option>
+				</select>
+			</span>
+		</div>
+
+		<!-- More Filters -->
+		<div ng-if="options !== 'none'" class="footerGroup pull-left">
+			<span class="footerTitle footerTitleButton">Filters:</span>
+			<div class="btn-group filterButton" dropdown>
+				<button type="button" class="btn btn-info btn-sm dropdown-toggle" dropdown-toggle>
+					2nd quarter <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu">
+					<li><a href="#">Clear filters</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Section<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+					<li><a href="#">Date range<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li>
+<!--					<li ng-if="!options.noType"><a href="#">Assign. Type<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li> -->
+<!--					<li ng-if="!options.noStandard" ><a href="#">Standard<span class="pull-right glyphicon glyphicon-chevron-right"></span></a></li> -->
+<!--
+					<li class="divider"></li>
+					<li><a href="#">Save filter</a></li>
+					<li><a href="#">Load filter</a></li>
+-->
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</div>
